@@ -1,0 +1,12 @@
+{
+    "bot_token": "",
+    "domain_matchers": [
+        {
+            "domains": [ "youtube.com", "youtu.be" ],
+            "parameter": {
+                "keyword": "si",
+                "length": 16
+            }
+        }
+    ]
+}
