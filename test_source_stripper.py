@@ -82,10 +82,12 @@ def test_strip_param_case_sensitive_name():
     assert out == ["https://youtube.com/watch?SI=y"]
 
 
-def test_amazon_ref_and_tag():
-    matchers = [{"domains": ["amazon.com"], "parameters": ["ref", "tag", "ref_", "keywords"]}]
+def test_amazon_ref_stripped_tag_preserved():
+    # `tag` is an Amazon Associates affiliate ID (attribution, NOT source
+    # tracking) so it is preserved; `ref`/`ref_`/`keywords` are click-tracking.
+    matchers = [{"domains": ["amazon.com"], "parameters": ["ref", "ref_", "keywords"]}]
     out = strip("https://www.amazon.com/dp/B0X?tag=foo-20&ref_=sr_1_1&keywords=x", matchers)
-    assert out == ["https://www.amazon.com/dp/B0X"]
+    assert out == ["https://www.amazon.com/dp/B0X?tag=foo-20"]
 
 
 def test_reddit_share_id_and_utm():

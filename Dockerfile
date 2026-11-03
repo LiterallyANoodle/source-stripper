@@ -1,4 +1,6 @@
-# Pin by digest per repo convention (see coyote-config modules/docker/*).
+# Floating tag matches the coyote-config modules/docker/* house convention
+# (see mlp-vote). Keep configuration.json out of the image — it is mounted
+# read-only at runtime.
 FROM python:3.12-slim
 
 WORKDIR /app

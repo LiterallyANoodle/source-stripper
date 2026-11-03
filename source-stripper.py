@@ -75,8 +75,23 @@ class Stripper(discord.Client):
         if len(response) > 2000:
             response = response[:1997] + "..."
 
-        await message.edit(suppress=True)
-        await message.reply(response, mention_author=False)
+        await self._deliver(message, response)
+
+    async def _deliver(self, message, response):
+        """Suppress the original embeds and reply with cleaned links.
+
+        Isolation from on_message: edit/reply can each raise `discord.Forbidden`
+        (missing Manage Messages) or `discord.HTTPException` (e.g. the message
+        was deleted before we replied); neither should crash the bot.
+        """
+        try:
+            await message.edit(suppress=True)
+        except discord.DiscordException as exc:
+            print(f"Failed to suppress embeds: {exc}")
+        try:
+            await message.reply(response, mention_author=False)
+        except discord.DiscordException as exc:
+            print(f"Failed to reply: {exc}")
 
     def find_links(self, message):
         """Extract http(s) URLs from a message, stripping trailing punctuation.

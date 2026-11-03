@@ -27,7 +27,7 @@
         },
         {
             "domains": ["amazon.com", "amazon.co.uk", "amazon.de", "amazon.ca", "amazon.co.jp", "amazon.fr", "amazon.it", "amazon.es", "amazon.in", "a.co", "amzn.to"],
-            "parameters": ["tag", "ref_", "ref", "keywords", "qid", "dib", "dib_tag", "linkCode", "creativeASIN", "ascsubtag", "th", "psc", "smid", "sprefix", "camp", "creative", "social_share"]
+            "parameters": ["ref_", "ref", "keywords", "qid", "dib", "dib_tag", "linkCode", "creativeASIN", "ascsubtag", "th", "psc", "smid", "sprefix", "camp", "creative", "social_share"]
         },
         {
             "domains": ["linkedin.com"],
