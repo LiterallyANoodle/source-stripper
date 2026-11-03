@@ -2,11 +2,72 @@
     "bot_token": "",
     "domain_matchers": [
         {
-            "domains": [ "youtube.com", "youtu.be" ],
-            "parameter": {
-                "keyword": "si",
-                "length": 16
-            }
+            "domains": ["youtube.com", "youtu.be"],
+            "parameters": ["si", "feature", "pp", "kw", "gclid"]
+        },
+        {
+            "domains": ["x.com", "twitter.com", "t.co"],
+            "parameters": ["a", "s", "t", "cn", "ref_url", "ref_src", "src", "__twitter_impression", "twclid"]
+        },
+        {
+            "domains": ["instagram.com"],
+            "parameters": ["igshid", "igsh"]
+        },
+        {
+            "domains": ["facebook.com", "fb.com", "fb.watch"],
+            "parameters": ["fbclid", "ref", "mibextid", "_rdr", "eid", "wtsid", "paipv", "sfnsn", "tracking_source"]
+        },
+        {
+            "domains": ["tiktok.com", "vm.tiktok.com", "vt.tiktok.com"],
+            "parameters": ["u_code", "preview_pb", "_d", "_t", "_r", "timestamp", "user_id", "share_app_name", "share_iid", "source"]
+        },
+        {
+            "domains": ["reddit.com", "redd.it"],
+            "parameters": ["share_id", "rdt", "correlation_id", "ref_campaign", "ref_source", "$3p", "$deep_link", "$original_url", "_branch_match_id", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
+        },
+        {
+            "domains": ["amazon.com", "amazon.co.uk", "amazon.de", "amazon.ca", "amazon.co.jp", "amazon.fr", "amazon.it", "amazon.es", "amazon.in", "a.co", "amzn.to"],
+            "parameters": ["tag", "ref_", "ref", "keywords", "qid", "dib", "dib_tag", "linkCode", "creativeASIN", "ascsubtag", "th", "psc", "smid", "sprefix", "camp", "creative", "social_share"]
+        },
+        {
+            "domains": ["linkedin.com"],
+            "parameters": ["trk", "refId", "trackingId", "lia", "lipi", "lirn"]
+        },
+        {
+            "domains": ["spotify.com"],
+            "parameters": ["si", "utm_source", "utm_medium", "utm_campaign"]
+        },
+        {
+            "domains": ["twitch.tv"],
+            "parameters": ["tt_medium", "tt_content"]
+        },
+        {
+            "domains": ["steampowered.com", "steamcommunity.com"],
+            "parameters": ["snr", "utm_source", "utm_medium", "utm_campaign"]
+        },
+        {
+            "domains": ["ebay.com", "ebay.co.uk", "ebay.de"],
+            "parameters": ["_trkparms", "_trksid", "_from", "hash"]
+        },
+        {
+            "domains": ["etsy.com"],
+            "parameters": ["click_key", "click_sum", "organic_search_click", "ref"]
+        },
+        {
+            "domains": ["nytimes.com"],
+            "parameters": ["smid", "utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"]
+        },
+        {
+            "domains": ["bbc.com", "bbc.co.uk"],
+            "parameters": ["xtor", "at_medium", "at_campaign", "at_custom", "at_format", "at_link_id", "at_offer_id", "at_referrer", "at_source"]
+        },
+        {
+            "domains": ["theguardian.com"],
+            "parameters": ["CMP", "utm_source", "utm_medium", "utm_campaign"]
+        },
+        {
+            "domains": ["medium.com"],
+            "parameters": ["source"]
         }
     ]
 }
