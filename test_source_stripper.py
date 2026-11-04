@@ -114,6 +114,14 @@ def test_strip_youtube_si_variable_length():
     assert out == ["https://youtube.com/watch?v=abc"]
 
 
+def test_strip_youtube_is_param():
+    # `is` is a sibling share-tracking token to `si` on youtu.be share links
+    out = strip("https://youtu.be/R_2rNnmac34?is=n7RczX-QJyjtWPOd",
+                [{"domains": ["youtu.be", "youtube.com"],
+                  "parameters": ["si", "is", "feature", "pp", "kw", "gclid"]}])
+    assert out == ["https://youtu.be/R_2rNnmac34"]
+
+
 def test_strip_youtube_preserves_non_tracking_params():
     out = strip("https://www.youtube.com/watch?v=abc&si=x&feature=share&t=30", YOUTUBE)
     # feature is stripped; v and t (watch time) are kept

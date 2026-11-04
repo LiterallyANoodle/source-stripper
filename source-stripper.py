@@ -56,8 +56,17 @@ class Stripper(discord.Client):
         if message.author.id == self.user.id:
             return
 
+        # Telemetry: empty content here (with a non-empty message) is the
+        # signature of the Message Content privileged intent being disabled on
+        # the bot application — on_message fires but content is blank.
+        content = message.content or ""
+        print(
+            f"[msg] author={message.author} content_len={len(content)} "
+            f"content={content[:80]!r}"
+        )
+
         try:
-            links = self.find_links(message.content)
+            links = self.find_links(content)
             stripped_links = self.strip_source_indicators(links)
         except Exception as exc:
             # Never crash the bot on a single malformed message.
@@ -65,6 +74,7 @@ class Stripper(discord.Client):
             return
 
         if not stripped_links:
+            print(f"[msg] no strippable links (found {len(links)} candidate(s))")
             return
 
         response = ""
