@@ -1,6 +1,6 @@
 # Floating tag matches the coyote-config modules/docker/* house convention
-# (see mlp-vote). Keep configuration.json out of the image — it is mounted
-# read-only at runtime.
+# (see mlp-vote). The bot token is NOT baked in — it is injected at runtime
+# as SOURCE_STRIPPER_TOKEN (sealed in sops on the host).
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -11,7 +11,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY source-stripper.py .
+# Version-controlled domain_matchers travel with the image as its config; the
+# template's empty bot_token is overridden at runtime by SOURCE_STRIPPER_TOKEN.
+COPY configuration-template.json configuration.json
 
-# configuration.json is mounted read-only at /app/configuration.json (see the
-# compose service); it is intentionally NOT baked into the image.
 CMD ["python", "source-stripper.py"]
