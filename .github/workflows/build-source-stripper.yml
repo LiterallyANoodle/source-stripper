@@ -2,13 +2,25 @@ name: build-source-stripper
 on:
   push:
     branches: [master, "T-*"]
-    paths: ["source-stripper.py", "requirements.txt", "Dockerfile", "configuration-template.json", ".github/workflows/build-source-stripper.yml"]
+    paths: ["source-stripper.py", "requirements.txt", "test_source_stripper.py", "Dockerfile", "configuration-template.json", ".github/workflows/build-source-stripper.yml"]
   pull_request:
-    paths: ["source-stripper.py", "requirements.txt", "Dockerfile", "configuration-template.json", ".github/workflows/build-source-stripper.yml"]
+    paths: ["source-stripper.py", "requirements.txt", "test_source_stripper.py", "Dockerfile", "configuration-template.json", ".github/workflows/build-source-stripper.yml"]
   workflow_dispatch:
 
 jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt pytest
+      - run: pytest -q
+
   image:
+    needs: test
     runs-on: ubuntu-24.04
     permissions:
       contents: read
