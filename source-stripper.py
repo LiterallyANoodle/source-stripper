@@ -258,9 +258,15 @@ if __name__ == "__main__":
 
     client = Stripper(intents=intents, domain_matchers=config.get("domain_matchers", []))
 
-    bot_token = str(config.get("bot_token", ""))
+    # The bot token is a runtime secret (injected as SOURCE_STRIPPER_TOKEN env in
+    # the container, sealed in sops on the host); fall back to the config file's
+    # bot_token only when the env var is absent (e.g. local dev).
+    bot_token = os.environ.get("SOURCE_STRIPPER_TOKEN") or str(config.get("bot_token", ""))
     if not bot_token:
-        print("Error: configuration is missing bot_token", file=sys.stderr)
+        print(
+            "Error: no bot token (set SOURCE_STRIPPER_TOKEN or configuration.json bot_token)",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     client.run(bot_token)
