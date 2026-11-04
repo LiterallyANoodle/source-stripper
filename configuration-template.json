@@ -3,7 +3,7 @@
     "domain_matchers": [
         {
             "domains": ["youtube.com", "youtu.be"],
-            "parameters": ["si", "feature", "pp", "kw", "gclid"]
+            "parameters": ["si", "is", "feature", "pp", "kw", "gclid"]
         },
         {
             "domains": ["x.com", "twitter.com", "t.co"],
