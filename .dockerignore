@@ -1,0 +1,10 @@
+.git
+.venv
+venv
+configuration.json
+*.pyc
+__pycache__
+.pytest_cache
+test_source_stripper.py
+REVIEW-glm.md
+.github
