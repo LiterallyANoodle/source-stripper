@@ -17,9 +17,15 @@ For every (non-self) message, the bot:
 
 ## Configuration
 
-Copy `configuration-template.json` to `configuration.json` and fill in
-`bot_token`. The config path can be overridden with the `SOURCE_STRIPPER_CONFIG`
-env var.
+`domain_matchers` (the sites and which params to strip from each) live in
+`configuration-template.json` and are baked into the image as
+`configuration.json` at build time — edit that template, not a runtime file.
+
+The **bot token** is a secret and is NOT in the config. In production it is
+injected via the `SOURCE_STRIPPER_TOKEN` environment variable; for local dev,
+copy `configuration-template.json` to `configuration.json` and put the token
+there (env var still takes precedence if both are set). The config file path
+can be overridden with `SOURCE_STRIPPER_CONFIG`.
 
 ```json
 {
